@@ -24,7 +24,10 @@ public class Lexico {
          car = codFonte.charAt(i);
          
          switch(this.estadoAtual){
-            case(0):{               
+            case(0):{   
+               if(car==' ' || car=='\n' || car=='\t'){
+                  break;
+               }
                if(car==';' || car==',' || car=='.' || car=='+' || car=='*' || car=='('
                      || car==')' || car=='=' || car=='{' || car=='}'){
                   irPara1();
