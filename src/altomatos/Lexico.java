@@ -121,9 +121,12 @@ public class Lexico {
                   addReiniciar(Tokem.NUM);
                   break;
                }
-               else{
+               if(Ultilit.isLetra(car)){
                   lista.add(new Tokem(Tokem.INV, temp));
                   break for1;
+               }else{
+                  addReiniciar(Tokem.NUM);
+                  break;
                }
             }
             
