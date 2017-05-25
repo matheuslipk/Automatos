@@ -25,7 +25,7 @@ public class Lexico {
          
          switch(this.estadoAtual){
             case(0):{   
-               if(car==' ' || car=='\n' || car=='\t'){
+               if(Ultilit.isVazio(car)){
                   break;
                }
                if(car==';' || car==',' || car=='.' || car=='+' || car=='*' || car=='('
@@ -117,9 +117,13 @@ public class Lexico {
                   irPara6();
                   break;
                }
-               else{
+               if(Ultilit.isVazio(car)){
                   addReiniciar(Tokem.NUM);
                   break;
+               }
+               else{
+                  lista.add(new Tokem(Tokem.INV, temp));
+                  break for1;
                }
             }
             

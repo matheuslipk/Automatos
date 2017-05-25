@@ -14,4 +14,8 @@ public class Ultilit {
       }
       return c.charAt(0)>=97 && c.charAt(0)<=122;         
    }
+   
+   public static boolean isVazio(char a){
+      return a=='\n' || a=='\t' || a==' ';
+   }
 }
