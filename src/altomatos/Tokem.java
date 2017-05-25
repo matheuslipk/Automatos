@@ -11,7 +11,7 @@ public class Tokem {
    public static final int COM1 = 3;
    public static final int COMN = 4;
    public static final int ID = 5;
-   public static final int PL = 6;
+   public static final int PR = 6;
    public static final int INV = 7;
    
    public Tokem(int tipo, String tokem){
@@ -52,7 +52,7 @@ public class Tokem {
       if(tipo==6){
          return "Palavra reservada";
       }else{
-         return "Tipo não reconhecido";
+         return "Caracter não esperado";
       }
    }
    

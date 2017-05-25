@@ -60,7 +60,14 @@ public class Lexico {
                   irPara11();
                   break;
                }
+               if(Ultilit.isLetra(car)){
+                  irPara15();
+                  break;
+               }
                else{
+                  System.out.println("Caracter não esperado '"+car+"'");
+                  temp+=car;
+                  lista.add(new Tokem(Tokem.INV, temp));
                   break for1;
                }
             }
@@ -190,6 +197,44 @@ public class Lexico {
                addReiniciar(Tokem.COMN);
                break;
             }
+            case(15):{
+               if(car=='_'){
+                  irPara16();
+                  break;
+               }              
+               if(Ultilit.isNumeric(car)){
+                  irPara17();
+                  break;
+               }
+               if(Ultilit.isLetra(car)){
+                  irPara18();
+                  break;
+               }               
+            }
+            case(16):{
+               if(Ultilit.isLetra(car) || Ultilit.isNumeric(car)){
+                  irPara17();
+                  break;
+               }
+            }
+            case(17):{
+               if(Ultilit.isLetra(car) || Ultilit.isNumeric(car)){
+                  irPara17();
+                  break;
+               }
+            }
+            case(18):{
+               if(Ultilit.isLetra(car)){
+                  irPara18();
+                  break;
+               }
+               if(Ultilit.isNumeric(car)){
+                  irPara17();
+                  break;
+               }else{
+                  addReiniciar(Tokem.PR);
+               }
+            }
          }
       }
    }
@@ -205,6 +250,13 @@ public class Lexico {
    
    
    private void addReiniciar(int tipoTokem){
+      if(estadoAtual==18){
+         verificarPR();
+         i--;
+         this.estadoAtual=0;
+         return;
+      }
+      
       lista.add(new Tokem(tipoTokem, temp));
       i--;
       temp="";
@@ -307,7 +359,7 @@ public class Lexico {
    }
    
    private void irPara10(){
-      temp += car;
+//      temp += car;
       if(i==codFonte.length()-1){
          this.lista.add(new Tokem(Tokem.COM1, temp));
          estadoAtual=10;
@@ -348,10 +400,60 @@ public class Lexico {
       temp += car;
       if(i==codFonte.length()-1){
          this.lista.add(new Tokem(Tokem.COMN, temp));
+         estadoAtual=14;
       }else{
          estadoAtual=14;
       }
    }
    
+   private void irPara15(){
+      temp += car;
+      if(i==codFonte.length()-1){
+         this.lista.add(new Tokem(Tokem.ID, temp));
+         estadoAtual=15;
+      }else{
+         estadoAtual=15;
+      }
+   }
+   private void irPara16(){
+      if(i==codFonte.length()-1){
+         addReiniciar(Tokem.ID);
+         System.err.println("Erro Underline não esperado");
+      }else{
+         temp+=car;
+         estadoAtual=16;
+      }
+   }
+   private void irPara17(){
+      temp+=car;
+      if(i==codFonte.length()-1){
+         this.lista.add(new Tokem(Tokem.ID, temp));
+         estadoAtual=17;
+      }else{
+         estadoAtual=17;
+      }
+   }
+   private void irPara18(){
+      temp+=car;
+      if(i==codFonte.length()-1){
+         verificarPR();
+         estadoAtual=18;
+      }else{
+         estadoAtual=18;
+      }
+   }
+   
+   private void verificarPR(){
+      List<String> pr = PReservada.getPR();
+      for(int j=0; j<pr.size(); j++){
+         if(temp.equals(pr.get(j))){
+            this.lista.add(new Tokem(Tokem.PR, temp));
+            temp="";
+            return;
+         }
+      }
+      this.lista.add(new Tokem(Tokem.ID, temp));
+      temp="";
+   }
    
 }
