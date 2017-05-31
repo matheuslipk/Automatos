@@ -45,7 +45,6 @@ public class Tela extends javax.swing.JFrame {
 
       tA1.setColumns(20);
       tA1.setRows(5);
-      tA1.setText("Hello world");
       jScrollPane2.setViewportView(tA1);
 
       btnAnalisarCodigo.setText("Analisar Código >>");

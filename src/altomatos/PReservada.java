@@ -7,21 +7,25 @@ public class PReservada {
    private static final List<String> PR = new ArrayList<>();
    
    private static void PreencherList(){
+      PR.add("programa");
       PR.add("se");
-      PR.add("ou");
       PR.add("entao");
-      PR.add("para");
-      PR.add("int");
-      PR.add("double");
-      PR.add("caracter");
-      PR.add("classe");
-      PR.add("faça");
-      PR.add("publico");
-      PR.add("privado");
-      PR.add("string");
-      PR.add("estatico");
       PR.add("senao");
-      PR.add("main");
+      PR.add("enquanto");
+      PR.add("faca");
+      PR.add("ate");
+      PR.add("repita");
+      PR.add("inteiro");
+      PR.add("real");
+      PR.add("caractere");
+      PR.add("case");
+      PR.add("escolha");
+      PR.add("fim");
+      PR.add("procedimento");
+      PR.add("funcao");
+      PR.add("de");
+      PR.add("para");
+      PR.add("inicio");
    }
    
    public static List<String> getPR(){

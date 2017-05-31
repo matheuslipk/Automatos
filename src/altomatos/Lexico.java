@@ -165,7 +165,10 @@ public class Lexico {
                   irPara10();
                   break;
                }else{
-                  irPara9();
+                  if(i==codFonte.length()-1){
+                  this.lista.add(new Tokem(Tokem.COM1, temp));
+                  estadoAtual=9;
+               }
                   break;
                }
             }
