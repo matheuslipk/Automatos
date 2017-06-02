@@ -190,7 +190,8 @@ public class Lexico {
                   irPara13();
                   break;
                }else{
-                  irPara12();
+                  this.estadoAtual=12;
+//                  irPara12();
                   break;
                }
             }
@@ -199,7 +200,8 @@ public class Lexico {
                   irPara14();
                   break;
                }else{
-                  irPara12();
+                  this.estadoAtual=12;
+//                  irPara12();
                   break;
                }
             }
