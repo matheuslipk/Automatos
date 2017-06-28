@@ -235,17 +235,29 @@ public class Lexico {
                if(Ultilit.isLetra(car)){
                   irPara18();
                   break;
-               }               
+               }  
+               if(car=='$'){
+                  irPara24();
+                  break;
+               }
             }
             case(16):{
                if(Ultilit.isLetra(car) || Ultilit.isNumeric(car)){
                   irPara17();
                   break;
                }
+               if(car=='$'){
+                  irPara24();
+                  break;
+               }
             }
             case(17):{
                if(Ultilit.isLetra(car) || Ultilit.isNumeric(car)){
                   irPara17();
+                  break;
+               }
+               if(car=='$'){
+                  irPara24();
                   break;
                }
             }
@@ -256,6 +268,10 @@ public class Lexico {
                }
                if(Ultilit.isNumeric(car)){
                   irPara17();
+                  break;
+               }
+               if(car=='$'){
+                  irPara24();
                   break;
                }else{
                   addReiniciar(Tokem.PR);
@@ -298,6 +314,15 @@ public class Lexico {
             case(23):{               
                addReiniciar(Tokem.SE);
                break;
+            }
+            case(24):{
+               if(car=='$'){
+                  irPara24();
+                  break;
+               }else{
+                  irPara17();
+                  break;
+               }
             }
          }
       }
@@ -550,6 +575,15 @@ public class Lexico {
          estadoAtual=23;
       }else{
          estadoAtual=23;
+      }
+   }
+   private void irPara24(){
+      if(i==codFonte.length()-1){
+         addReiniciar(Tokem.ID);
+         System.err.println("Erro Cifrão não esperado");
+      }else{
+         temp+=car;
+         estadoAtual=24;
       }
    }
    
