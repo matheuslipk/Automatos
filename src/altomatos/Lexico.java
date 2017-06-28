@@ -180,7 +180,12 @@ public class Lexico {
                if(car=='/'){
                   irPara12();
                   break;
-               }else{
+               }
+               if(car=='*'){
+                  irPara19();
+                  break;
+               }
+               else{
                   addReiniciar(Tokem.SE);
                   break;
                }
@@ -245,7 +250,31 @@ public class Lexico {
                   break;
                }else{
                   addReiniciar(Tokem.PR);
+                  break;
                }
+            }
+            case(19):{
+               if(car=='*'){
+                  irPara20();
+                  break;
+               }
+               else{
+                  this.estadoAtual=19;
+                  break;
+               }
+            }
+            case(20):{
+               if(car=='/'){
+                  irPara21();
+                  break;
+               }else{
+                  this.estadoAtual=19;
+                  break;
+               }
+            }
+            case(21):{
+               addReiniciar(Tokem.COMN);
+               break;
             }
          }
       }
@@ -452,6 +481,34 @@ public class Lexico {
          estadoAtual=18;
       }else{
          estadoAtual=18;
+      }
+   }
+   
+   private void irPara19(){
+      temp+=car;
+      if(i==codFonte.length()-1){
+         System.err.println("Erro em comentário de mais uma linha");
+      }else{
+         estadoAtual=19;
+      }
+   }
+   
+   private void irPara20(){
+      temp+=car;
+      if(i==codFonte.length()-1){
+         System.err.println("Erro em comentário de mais uma linha");
+      }else{
+         estadoAtual=20;
+      }
+   }
+   
+   private void irPara21(){
+      temp += car;
+      if(i==codFonte.length()-1){
+         this.lista.add(new Tokem(Tokem.COMN, temp));
+         estadoAtual=21;
+      }else{
+         estadoAtual=21;
       }
    }
    
