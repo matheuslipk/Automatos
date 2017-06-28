@@ -28,7 +28,7 @@ public class Lexico {
                if(Ultilit.isVazio(car)){
                   break;
                }
-               if(car==';' || car==',' || car=='.' || car=='+' || car=='*' || car=='('
+               if(car==';' || car==',' || car=='.' || car=='*' || car=='('
                      || car==')' || car=='=' || car=='{' || car=='}'){
                   irPara1();
                   break;
@@ -62,6 +62,10 @@ public class Lexico {
                }
                if(Ultilit.isLetra(car)){
                   irPara15();
+                  break;
+               }
+               if(car=='+'){
+                  irPara22();
                   break;
                }
                else{
@@ -102,7 +106,12 @@ public class Lexico {
                if(Ultilit.isNumeric(car)){
                   irPara5();
                   break;
-               }else{
+               }
+               if(car=='-'){
+                  irPara23();
+                  break;
+               }
+               else{
                   addReiniciar(Tokem.SE);
                   break;
                }
@@ -274,6 +283,20 @@ public class Lexico {
             }
             case(21):{
                addReiniciar(Tokem.COMN);
+               break;
+            }
+            case(22):{               
+               if(car=='+'){
+                  irPara1();
+                  break;
+               }
+               else{
+                  addReiniciar(Tokem.SE);
+                  break;
+               }
+            }
+            case(23):{               
+               addReiniciar(Tokem.SE);
                break;
             }
          }
@@ -509,6 +532,24 @@ public class Lexico {
          estadoAtual=21;
       }else{
          estadoAtual=21;
+      }
+   }
+   private void irPara22(){
+      temp+=car;
+      if(i==codFonte.length()-1){
+         this.lista.add(new Tokem(Tokem.SE, temp));
+         estadoAtual=22;
+      }else{
+         estadoAtual=22;
+      }
+   }
+   private void irPara23(){
+      temp+=car;
+      if(i==codFonte.length()-1){
+         this.lista.add(new Tokem(Tokem.SE, temp));
+         estadoAtual=23;
+      }else{
+         estadoAtual=23;
       }
    }
    
