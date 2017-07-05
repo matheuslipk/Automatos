@@ -239,6 +239,9 @@ public class Lexico {
                if(car=='$'){
                   irPara24();
                   break;
+               }else{
+                  addReiniciar(Tokem.ID);
+                  break;
                }
             }
             case(16):{
@@ -258,6 +261,10 @@ public class Lexico {
                }
                if(car=='$'){
                   irPara24();
+                  break;
+               }
+               else{
+                  addReiniciar(Tokem.ID);
                   break;
                }
             }
