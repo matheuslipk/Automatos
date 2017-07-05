@@ -319,7 +319,12 @@ public class Lexico {
                if(car=='$'){
                   irPara24();
                   break;
-               }else{
+               }
+               if(Ultilit.isVazio(car)){
+                  System.out.println("Erro ao terminar identificador com cifrão");
+                  break for1;
+               }
+               else{
                   irPara17();
                   break;
                }
@@ -579,7 +584,7 @@ public class Lexico {
    }
    private void irPara24(){
       if(i==codFonte.length()-1){
-         addReiniciar(Tokem.ID);
+//         addReiniciar(Tokem.ID);
          System.err.println("Erro Cifrão não esperado");
       }else{
          temp+=car;
