@@ -205,6 +205,10 @@ public class Lexico {
                   break;
                }else{
                   this.estadoAtual=12;
+                  if(i==this.codFonte.length()-1){
+                     System.out.println("Finalize com o caracter de //");
+                     break;
+                  }
 //                  irPara12();
                   break;
                }
@@ -291,6 +295,10 @@ public class Lexico {
                   break;
                }
                else{
+                  if(i==this.codFonte.length()-1){
+                     System.out.println("Finalize com o caracter de */");
+                     break;
+                  }
                   this.estadoAtual=19;
                   break;
                }
